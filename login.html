@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - GO TRAVEL</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Custom CSS Murni -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- SDK Google Identity Services Resmi -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!-- SDK Facebook Login Resmi -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js"></script>
+</head>
+<body>
+  
+  <!-- Overlay Latar Belakang -->
+  <div class="bg-overlay"></div>
+
+  <!-- Main Card Container -->
+  <div class="auth-card">
+    
+   <!-- Left Section: Image Card -->
+    <div class="image-section">
+      <div class="image-overlay"></div>
+      
+      <div class="image-text-content">
+        <h1 class="image-title">
+          Explore More<br />
+          <span class="image-title-light">Travel Better</span>
+        </h1>
+        <p class="image-subtitle">
+          Setiap perjalanan dimulai dengan satu langkah. Temukan destinasi impianmu di sini.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Section: Login Form -->
+    <div class="form-section">
+      
+      <!-- Title & Subtitle -->
+      <div class="form-header">
+        <h2>Welcome to GO TRAVEL</h2>
+        <p>Silakan masuk ke akun milikmu untuk menikmati<br />layanan terbaik dari kami.</p>
+      </div>
+
+      <!-- Tab Switcher (Login Active) -->
+      <div class="tab-switcher">
+        <a href="login.html" class="tab-button active">Login</a>
+        <a href="register.html" class="tab-button inactive">Register</a>
+      </div>
+
+      <!-- Form Inputs -->
+      <form class="auth-form" onsubmit="event.preventDefault();">
+        <!-- Email Input -->
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" class="input-field" />
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-group">
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input id="password" type="password" placeholder="Enter your password" class="input-field" />
+            <button type="button" onclick="togglePassword()" class="toggle-password-btn">
+              <i id="eye-icon" class="fa-regular fa-eye-slash"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password Row -->
+        <div class="form-options">
+          <div class="checkbox-group">
+            <input id="remember" type="checkbox" />
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="javascript:void(0)" class="forgot-link">Lupa Password?</a>
+        </div>
+
+        <!-- Login Button Utama -->
+        <button type="submit" onclick="window.location.href='index.html'" class="submit-btn">
+          Login
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">Or login with</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- Social Login Buttons Container -->
+      <div class="social-group">
+        <!-- Google Custom Button -->
+        <button type="button" onclick="loginWithGoogle()" class="social-btn">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          Google
+        </button>
+
+        <!-- Facebook Custom Button -->
+        <button type="button" onclick="loginWithFacebook()" class="social-btn">
+          <i class="fa-brands fa-facebook social-icon-fa"></i>
+          Facebook
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Logika Auth -->
+  <script>
+    const GOOGLE_CLIENT_ID = "997677889943-rmdi2le79udl6mijar561sn9l4rtjstn.apps.googleusercontent.com";
+    const FACEBOOK_APP_ID = "4514296402162475";
+
+    let googleTokenClient;
+
+    window.onload = function () {
+      if (window.google) {
+        googleTokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: GOOGLE_CLIENT_ID,
+          scope: 'profile email',
+          callback: (response) => {
+            if (response.access_token) {
+              fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: { Authorization: `Bearer ${response.access_token}` }
+              })
+              .then(res => res.json())
+              .then(profile => {
+                console.log("Data User Google:", profile);
+                alert(`Login berhasil! Selamat datang kembali, ${profile.name}!`);
+                window.location.href = 'user.html';
+              });
+            }
+          },
+        });
+      }
+    };
+
+    function loginWithGoogle() {
+      if (googleTokenClient) {
+        googleTokenClient.requestAccessToken();
+      } else {
+        alert("Google SDK belum siap, silakan coba beberapa detik lagi.");
+      }
+    }
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : FACEBOOK_APP_ID,
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v18.0'
+      });
+    };
+
+    function loginWithFacebook() {
+      if (typeof FB === 'undefined') {
+        alert("Facebook SDK sedang dimuat. Pastikan koneksi internet kamu aktif.");
+        return;
+      }
+
+      FB.login(function(response) {
+        if (response.authResponse) {
+          FB.api('/me', { fields: 'name, email, picture' }, function(profile) {
+            console.log("Data User Facebook:", profile);
+            alert(`Login berhasil! Selamat datang kembali, ${profile.name}!`);
+            window.location.href = 'index.html';
+          });
+        } else {
+          console.log("Login Facebook dibatalkan oleh pengguna.");
+        }
+      }, { scope: 'public_profile,email' });
+    }
+
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eye-icon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+      }
+    }
+  </script>
+</body>
+</html>

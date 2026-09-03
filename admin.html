@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GO TRAVEL - Profil</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- External CSS khusus index -->
+  <link rel="stylesheet" href="index.css" />
+
+    <style>
+      @media (max-width: 767px) {
+        #detailBookingPage .grid.grid-cols-2 {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
+</head>
+
+<body class="text-gray-800 relative min-h-screen font-['Inter']">
+
+  <!-- Background Global -->
+  <div class="bg-fixed-background"></div>
+  <div class="bg-fixed-overlay"></div>
+
+ <!-- ==================== NAVBAR GLOBAL ==================== -->
+  <header id="global-navbar" class="sticky top-0 z-50 max-w-6xl mx-auto pt-4 pb-2 px-4">
+  <div class="bg-white/90 backdrop-blur-md rounded-full px-4 md:px-5 py-1 flex items-center justify-between shadow-lg min-h-[42px]">
+      <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center shrink-0 h-[42px]" aria-label="GO Travel">
+        <img
+          src="img/logo go travel.png"
+          alt="GO Travel"
+          class="w-[80px] h-[45px] object-contain object-left block flex-shrink-0"
+        />
+      </a>
+      <nav class="hidden md:flex items-center space-x-2 text-xs font-semibold text-gray-700">
+        <button id="nav-home" onclick="navigateTo('home')" class="hover:bg-gray-100 px-5 py-1.5 rounded-full transition">Beranda</button>
+        <button id="nav-paket" onclick="navigateTo('paket')" class="hover:bg-gray-100 px-4 py-1.5 rounded-full transition">Paket Wisata</button>
+        <a href="#destinasi" class="hover:bg-gray-100 px-4 py-1.5 rounded-full transition">Destinasi</a>
+        <button id="nav-about" onclick="navigateTo('about')" class="hover:bg-gray-100 px-4 py-1.5 rounded-full transition">About</button>
+        <a id="nav-contact" href="javascript:void(0)" onclick="goToContact()" class="hover:bg-gray-100 px-4 py-1.5 rounded-full transition">Contact</a>
+        <button onclick="showDashboardPage()" class="bg-amber-100/80 text-amber-800 px-5 py-1.5 rounded-full shadow-sm transition flex items-center gap-1.5">
+          <i class="fa-regular fa-user text-xs"></i> Profil
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== HALAMAN PROFIL ==================== -->
+  <main id="dashboardPage" class="max-w-6xl mx-auto px-4 pb-8">
+
+    <!-- Tombol kembali -->
+    <button onclick="history.back()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 md:p-4 shadow-xl">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- ==================== SIDEBAR PROFIL ==================== -->
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-5 min-h-[650px]">
+
+          <div class="flex flex-col items-center text-center pt-2">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+
+          <div class="mt-8 space-y-2">
+
+            <button class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium">
+              <i class="fa-solid fa-house text-base w-5"></i>
+              Dashboard
+            </button>
+
+            <button onclick="showPackagePage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-suitcase text-base w-5"></i>
+              Paket Wisata
+            </button>
+
+            <button onclick="showHistoryPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-clock-rotate-left text-base w-5"></i>
+              Riwayat Pemesanan
+            </button>
+
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-gear text-base w-5"></i>
+              Pengaturan
+            </button>
+
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i>
+              Logout
+            </button>
+
+          </div>
+        </aside>
+
+        <!-- ==================== KONTEN PROFIL ==================== -->
+        <section class="lg:col-span-9 space-y-4">
+
+          <!-- Statistik -->
+          <div class="bg-white rounded-2xl border border-gray-300 p-3">
+            <div class="grid grid-cols-3 gap-3">
+
+              <div class="bg-white rounded-2xl border border-gray-300 p-4 min-h-[112px]">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+                    <i class="fa-solid fa-briefcase text-orange-500"></i>
+                  </div>
+
+                  <div>
+                    <p class="text-xs text-gray-600">Total Pesanan</p>
+                    <p class="text-lg font-medium text-orange-500">0</p>
+                    <p class="text-[11px] text-gray-600">Semua waktu</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-gray-300 p-4 min-h-[112px]">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                    <i class="fa-regular fa-circle-check text-green-600 text-xl"></i>
+                  </div>
+
+                  <div>
+                    <p class="text-xs text-gray-600">Selesai</p>
+                    <p class="text-lg font-medium text-green-600">0</p>
+                    <p class="text-[11px] text-gray-600">Perjalanan selesai</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl border border-gray-300 p-4 min-h-[112px]">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <i class="fa-regular fa-calendar text-blue-600 text-xl"></i>
+                  </div>
+
+                  <div>
+                    <p class="text-xs text-gray-600">Dikonfirmasi</p>
+                    <p class="text-lg font-medium text-blue-600">0</p>
+                    <p class="text-[11px] text-gray-600">Perjalanan mendatang</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- PEMBUNGKUS LUAR PAKET WISATA + RIWAYAT PEMESANAN -->
+          <!-- ================================================= -->
+
+          <div class="bg-white rounded-2xl border border-gray-300 p-4 space-y-4">
+
+
+            <!-- ==================== PAKET WISATA ==================== -->
+            <div class="bg-white rounded-2xl border border-gray-300 p-4">
+
+              <h2 class="text-sm font-bold mb-3">Paket Wisata</h2>
+
+              <div class="space-y-2">
+
+                <!-- Jogja -->
+                <div onclick="showPackagePage()" class="border border-gray-300 rounded-2xl p-2.5 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition">
+
+                  <img src="img/jogja.png" alt="Jogja Tour" class="w-24 h-14 object-cover rounded-xl">
+
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-sm font-bold">Jogja Tour 2 Hari</h3>
+                    <p class="text-xs text-gray-600">Yogyakarta</p>
+                  </div>
+
+                  <div class="hidden sm:block w-36">
+                    <p class="text-sm font-bold text-orange-500">Rp.2.200.000</p>
+                    <p class="text-[11px] text-gray-500 mt-1">
+                      <i class="fa-regular fa-clock mr-1"></i>Durasi 2 Hari 1 Malam
+                    </p>
+                  </div>
+
+                  <div class="flex items-center gap-4 px-2">
+                    <button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black hover:text-orange-500 transition" aria-label="Edit Paket Wisata">
+                      <i class="fa-solid fa-pen text-lg"></i>
+                    </button>
+
+                    <button class="text-red-500 hover:text-red-700 transition">
+                      <i class="fa-regular fa-trash-can text-lg"></i>
+                    </button>
+                  </div>
+
+                </div>
+
+
+                <!-- Bromo -->
+                <div onclick="showPackagePage()" class="border border-gray-300 rounded-2xl p-2.5 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition">
+
+                  <img src="img/bromo.png" alt="Bromo Tour" class="w-24 h-14 object-cover rounded-xl">
+
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-sm font-bold">Bromo Tour 1 Hari</h3>
+                    <p class="text-xs text-gray-600">Jawa Timur</p>
+                  </div>
+
+                  <div class="hidden sm:block w-36">
+                    <p class="text-sm font-bold text-orange-500">Rp.499.000</p>
+                    <p class="text-[11px] text-gray-500 mt-1">
+                      <i class="fa-regular fa-clock mr-1"></i>Durasi 1 Hari
+                    </p>
+                  </div>
+
+                  <div class="flex items-center gap-4 px-2">
+                    <button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black hover:text-orange-500 transition" aria-label="Edit Paket Wisata">
+                      <i class="fa-solid fa-pen text-lg"></i>
+                    </button>
+
+                    <button class="text-red-500 hover:text-red-700 transition">
+                      <i class="fa-regular fa-trash-can text-lg"></i>
+                    </button>
+                  </div>
+
+                </div>
+
+
+                <!-- Lampung -->
+                <div onclick="showPackagePage()" class="border border-gray-300 rounded-2xl p-2.5 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition">
+
+                  <img src="img/lampung.png" alt="Lampung Tour" class="w-24 h-14 object-cover rounded-xl">
+
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-sm font-bold">Lampung Tour 3 Hari</h3>
+                    <p class="text-xs text-gray-600">Lampung</p>
+                  </div>
+
+                  <div class="hidden sm:block w-36">
+                    <p class="text-sm font-bold text-orange-500">Rp.975.000</p>
+                    <p class="text-[11px] text-gray-500 mt-1">
+                      <i class="fa-regular fa-clock mr-1"></i>Durasi 3 Hari 2 Malam
+                    </p>
+                  </div>
+
+                  <div class="flex items-center gap-4 px-2">
+                    <button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black hover:text-orange-500 transition" aria-label="Edit Paket Wisata">
+                      <i class="fa-solid fa-pen text-lg"></i>
+                    </button>
+
+                    <button class="text-red-500 hover:text-red-700 transition">
+                      <i class="fa-regular fa-trash-can text-lg"></i>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+            <!-- ==================== RIWAYAT PEMESANAN ==================== -->
+            <div class="bg-white rounded-2xl border border-gray-300 p-4">
+
+              <h2 class="text-sm font-bold mb-3">Riwayat Pemesanan</h2>
+
+              <!-- TABEL -->
+              <div class="w-full border border-gray-300 rounded-2xl overflow-hidden">
+
+                <!-- HEADER -->
+                <div class="grid grid-cols-[1.1fr_1.2fr_1fr_.7fr_1.1fr_.8fr_.8fr] bg-orange-50 px-3 py-3 text-[10px] font-medium">
+
+                  <span class="pr-3 font-bold text-[11px]">Pelanggan</span>
+                  <span class="pr-3 font-bold text-[11px]">Paket Wisata</span>
+                  <span class="pr-3 font-bold text-[11px]">Tanggal</span>
+                  <span class="pr-3 font-bold text-[11px]">Jumlah Peserta</span>
+                  <span class="pl-1 font-bold text-[11px]">Total<br>Pembayaran</span>
+                  <span class="pr-3 font-bold text-[11px]">Status</span>
+                  <span class="pr-3 font-bold text-[11px]">Aksi</span>
+                  
+                </div>
+
+
+                <div class="divide-y divide-gray-300">
+
+
+                  <!-- DATA 1 -->
+                  <div class="grid grid-cols-[1.1fr_1.2fr_1fr_.7fr_1.1fr_.8fr_.8fr] items-center px-3 py-2.5 text-[10px]">
+
+                    <div>
+                      <p>Alexa Lubeille R.</p>
+                      <p class="text-gray-500">0987-3572-3833</p>
+                    </div>
+
+                    <div>
+                      <p>Jogja Tour 2 Hari</p>
+                      <p class="text-gray-500">Yogyakarta</p>
+                    </div>
+
+                    <div class="text-gray-500">
+                      01 Agustus 2026<br>
+                      05 Agustus 2026
+                    </div>
+
+                    <div class="text-gray-500">
+                      6 Orang
+                    </div>
+
+                    <div class="text-gray-500">
+                      Rp. 13.200.000
+                    </div>
+
+                    <div>
+                      <span class="inline-block bg-blue-100 text-blue-700 rounded-full px-2 py-1">
+                        Dikonfirmasi
+                      </span>
+                    </div>
+
+                    <div>
+                      <button class="border border-blue-500 text-blue-600 rounded-full px-2 py-1 hover:bg-blue-50 transition">
+                        Lihat Detail
+                      </button>
+                    </div>
+
+                  </div>
+
+
+                  <!-- DATA 2 -->
+                  <div class="grid grid-cols-[1.1fr_1.2fr_1fr_.7fr_1.1fr_.8fr_.8fr] items-center px-3 py-2.5 text-[10px]">
+
+                    <div>
+                      <p>Nadia Putri</p>
+                      <p class="text-gray-500">0859-3555-4829</p>
+                    </div>
+
+                    <div>
+                      <p>Bandung Tour 4 Hari</p>
+                      <p class="text-gray-500">Bandung</p>
+                    </div>
+
+                    <div class="text-gray-500">
+                      06 Agustus 2026<br>
+                      09 Agustus 2026
+                    </div>
+
+                    <div class="text-gray-500">
+                      8 Orang
+                    </div>
+
+                    <div class="text-gray-500">
+                      Rp. 14.400.000
+                    </div>
+
+                    <div>
+                      <span class="inline-block w-[74px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">
+                        Selesai
+                      </span>
+                    </div>
+
+                    <div>
+                      <button class="border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">
+                        Lihat Detail
+                      </button>
+                    </div>
+
+                  </div>
+
+
+                  <!-- DATA 3 -->
+                  <div class="grid grid-cols-[1.1fr_1.2fr_1fr_.7fr_1.1fr_.8fr_.8fr] items-center px-3 py-2.5 text-[10px]">
+
+                    <div>
+                      <p>Raka Pratama</p>
+                      <p class="text-gray-500">0824-7872-3844</p>
+                    </div>
+
+                    <div>
+                      <p>Bali Tour 5 Hari</p>
+                      <p class="text-gray-500">Bali</p>
+                    </div>
+
+                    <div class="text-gray-500">
+                      27 Agustus 2026<br>
+                      29 Agustus 2026
+                    </div>
+
+                    <div class="text-gray-500">
+                      4 Orang
+                    </div>
+
+                    <div class="text-gray-500">
+                      Rp. 11.000.000
+                    </div>
+
+                    <div>
+                      <span class="inline-block w-[74px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">
+                        Selesai
+                      </span>
+                    </div>
+
+                    <div>
+                      <button class="border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">
+                        Lihat Detail
+                      </button>
+                    </div>
+
+                  </div>
+
+
+                  <!-- DATA 4 -->
+                  <div class="grid grid-cols-[1.1fr_1.2fr_1fr_.7fr_1.1fr_.8fr_.8fr] items-center px-3 py-2.5 text-[10px]">
+
+                    <div>
+                      <p>Alya Ramadhani</p>
+                      <p class="text-gray-500">0928-7533-2088</p>
+                    </div>
+
+                    <div>
+                      <p>Lampung Tour 3 Hari</p>
+                      <p class="text-gray-500">Lampung</p>
+                    </div>
+
+                    <div class="text-gray-500">
+                      18 Juli 2026<br>
+                      25 Juli 2026
+                    </div>
+
+                    <div class="text-gray-500">
+                      7 Orang
+                    </div>
+
+                    <div class="text-gray-500">
+                      Rp. 6.825.000
+                    </div>
+
+                    <div>
+                      <span class="inline-block w-[74px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">
+                        Selesai
+                      </span>
+                    </div>
+
+                    <div>
+                      <button class="border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">
+                        Lihat Detail
+                      </button>
+                    </div>
+
+                  </div>
+
+
+                  <!-- DATA 5 -->
+                  <div class="grid grid-cols-[1.1fr_1.2fr_1fr_.7fr_1.1fr_.8fr_.8fr] items-center px-3 py-2.5 text-[10px]">
+
+                    <div>
+                      <p>Fajar Maulana</p>
+                      <p class="text-gray-500">0925-4489-3877</p>
+                    </div>
+
+                    <div>
+                      <p>Bromo Tour 1 Hari</p>
+                      <p class="text-gray-500">Jawa Timur</p>
+                    </div>
+
+                    <div class="text-gray-500">
+                      19 Juli 2026<br>
+                      27 Juli 2026
+                    </div>
+
+                    <div class="text-gray-500">
+                      10 Orang
+                    </div>
+
+                    <div class="text-gray-500">
+                      Rp. 4.990.000
+                    </div>
+
+                    <div>
+                      <span class="inline-block w-[74px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">
+                        Selesai
+                      </span>
+                    </div>
+
+                    <div>
+                      <button class="border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">
+                        Lihat Detail
+                      </button>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ==================== HALAMAN PAKET WISATA ==================== -->
+  <main id="packagePage" class="max-w-6xl mx-auto px-4 pb-8 hidden">
+    <button onclick="showDashboardPage()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 md:p-4 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-5 min-h-[650px]">
+          <div class="flex flex-col items-center text-center pt-2">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+
+          <div class="mt-8 space-y-2">
+            <button onclick="showDashboardPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-house text-base w-5"></i> Dashboard
+            </button>
+            <button class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium">
+              <i class="fa-solid fa-suitcase text-base w-5"></i> Paket Wisata
+            </button>
+            <button onclick="showHistoryPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-clock-rotate-left text-base w-5"></i> Riwayat Pemesanan
+            </button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-gear text-base w-5"></i> Pengaturan
+            </button>
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i> Logout
+            </button>
+          </div>
+        </aside>
+
+        <section class="lg:col-span-9 bg-white rounded-2xl border border-gray-300 p-5 md:pl-7">
+          <div class="flex items-center justify-between mb-3">
+            <h1 class="text-xl font-bold text-gray-800">Daftar Paket Wisata</h1>
+            <div class="border border-gray-300 rounded-2xl px-4 py-2 flex items-center gap-3 text-orange-500 font-semibold">
+              <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center"><i class="fa-solid fa-briefcase"></i></div>
+              <span>8</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 mb-3">
+            <div class="flex-1 flex items-center gap-2 border border-gray-300 bg-gray-100 rounded-full px-4 py-2">
+              <i class="fa-solid fa-magnifying-glass text-gray-500"></i>
+              <input id="packageSearch" oninput="filterPackages()" type="text" placeholder="Search" class="w-full bg-transparent outline-none text-sm text-gray-700">
+            </div>
+            <button onclick="showAddPackagePage()" class="border border-orange-400 text-orange-600 rounded-full px-7 py-2 text-xs font-medium">+ Tambah Paket</button>
+          </div>
+
+          <div id="packageList" class="space-y-1.5">
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Jogja Tour 2 Hari Yogyakarta">
+              <img src="img/jogja.png" alt="Jogja Tour" class="w-24 h-16 object-cover rounded-xl">
+              <div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Jogja Tour 2 Hari</h3><p class="text-xs text-gray-600">Yogyakarta</p></div>
+              <div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.2.200.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 2 Hari 1 Malam</p></div>
+              <div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Bromo Tour 1 Hari Jawa Timur">
+              <img src="img/bromo.png" alt="Bromo Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Bromo Tour 1 Hari</h3><p class="text-xs text-gray-600">Jawa Timur</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.499.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 1 Hari</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Lampung Tour 3 Hari Lampung">
+              <img src="img/lampung.png" alt="Lampung Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Lampung Tour 3 Hari</h3><p class="text-xs text-gray-600">Lampung</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.975.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 3 Hari 2 Malam</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Bali Tour 5 Hari Bali">
+              <img src="img/bali.png" alt="Bali Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Bali Tour 5 Hari</h3><p class="text-xs text-gray-600">Bali</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.2.750.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 5 Hari 4 Malam</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Bandung Tour 4 Hari Bandung">
+              <img src="img/bandung.png" alt="Bandung Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Bandung Tour 4 Hari</h3><p class="text-xs text-gray-600">Bandung</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.1.800.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 4 Hari 3 Malam</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Malioboro Tour 1 Hari Yogyakarta">
+              <img src="img/malioboro.png" alt="Malioboro Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Malioboro Tour 1 Hari</h3><p class="text-xs text-gray-600">Yogyakarta</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.249.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 1 Hari</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Tangkuban Perahu Tour 1 Hari Jawa Barat">
+              <img src="img/tangkuban prahu.png" alt="Tangkuban Perahu Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Tangkuban Perahu Tour 1 Hari</h3><p class="text-xs text-gray-600">Jawa Barat</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.200.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 1 Hari</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+            <div class="package-item border border-gray-300 rounded-2xl p-1.5 flex items-center gap-3" data-name="Pantai Pandawa Tour 1 Hari Bali">
+              <img src="img/pandawa.png" alt="Pantai Pandawa Tour" class="w-24 h-16 object-cover rounded-xl"><div class="flex-1 min-w-0"><h3 class="text-sm font-bold">Pantai Pandawa Tour 1 Hari</h3><p class="text-xs text-gray-600">Bali</p></div><div class="hidden sm:block w-44"><p class="text-sm font-bold text-orange-500">Rp.175.000</p><p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Durasi 1 Hari</p></div><div class="flex items-center gap-4 px-2"><button type="button" onclick="event.stopPropagation(); showEditPackagePage()" class="text-black" aria-label="Edit Paket Wisata"><i class="fa-solid fa-pen text-lg"></i></button><button class="text-red-500"><i class="fa-regular fa-trash-can text-lg"></i></button></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ==================== HALAMAN TAMBAH PAKET WISATA ==================== -->
+  <main id="addPackagePage" class="max-w-6xl mx-auto px-4 pb-8 hidden">
+    <button onclick="showPackagePage()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 md:p-4 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-5 min-h-[650px]">
+          <div class="flex flex-col items-center text-center pt-2">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+          <div class="mt-8 space-y-2">
+            <button onclick="showDashboardPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-house text-base w-5"></i> Dashboard</button>
+            <button onclick="showPackagePage()" class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium"><i class="fa-solid fa-suitcase text-base w-5"></i> Paket Wisata</button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-clock-rotate-left text-base w-5"></i> Riwayat Pemesanan</button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-gear text-base w-5"></i> Pengaturan</button>
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i> Logout</button>
+          </div>
+        </aside>
+
+        <section class="lg:col-span-9 bg-white rounded-2xl border border-gray-300 p-5">
+          <h1 class="text-xl font-bold text-gray-800 mb-7">Tambah Paket Wisata</h1>
+          <form onsubmit="event.preventDefault(); alert('Paket wisata berhasil disimpan!'); showPackagePage();">
+            <div class="mb-3">
+              <h2 class="text-sm font-bold mb-2">1. Tambah Gambar</h2>
+              <label class="border border-orange-400 rounded-2xl min-h-[84px] flex flex-col items-center justify-center cursor-pointer hover:bg-orange-50/40 transition">
+                <i class="fa-solid fa-cloud-arrow-up text-orange-500 text-2xl mb-1"></i>
+                <span class="text-xs text-gray-700">Seret & letakkan gambar disini atau</span>
+                <span class="text-xs text-orange-500 mt-1">klik untuk memilih file</span>
+                <span class="text-[8px] text-gray-400 mt-1">Format: JPG, PNG, WEBP. Maksimal 2MB</span>
+                <input type="file" accept="image/png,image/jpeg,image/webp" class="hidden">
+              </label>
+            </div>
+
+            <div class="border border-gray-300 rounded-2xl p-4 mb-3">
+              <h2 class="text-sm font-bold mb-3">2. Informasi Paket</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                <div><label class="block text-[11px] mb-1">Nama Paket Wisata</label><input required placeholder="Tulis nama paket wisata" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400"></div>
+                <div><label class="block text-[11px] mb-1">Harga Mulai (Rp)</label><input required placeholder="Tulis harga" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400"></div>
+                <div class="relative">
+                  <label class="block text-[11px] mb-1">Destinasi</label>
+
+                  <!-- Input destinasi + tombol filter -->
+                  <button type="button" onclick="toggleDestinationFilter()" id="destinationButton"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] bg-white outline-none text-left flex items-center justify-between hover:border-orange-400">
+                    <span id="selectedDestination">Pilih destinasi</span>
+                    <i class="fa-solid fa-chevron-down text-sm"></i>
+                  </button>
+                  <input type="hidden" id="destinationValue" required>
+
+                  <!-- Filter Destinasi -->
+                  <div id="destinationFilter"
+                    class="hidden absolute left-0 top-[72px] z-50 w-[310px] bg-white border border-gray-300 rounded-2xl shadow-lg p-4">
+                    <h3 class="text-lg font-bold text-gray-800 pb-2 border-b border-gray-300">Filter Destinasi</h3>
+
+                    <div class="mt-3 space-y-1">
+                      <button type="button" onclick="selectDestination('')"
+                        class="w-full flex items-center gap-3 rounded-full px-3 py-2 text-sm text-orange-600 bg-orange-100 text-left">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Semua Destinasi</span>
+                      </button>
+
+                      <button type="button" onclick="selectDestination('Wilayah Yogyakarta')"
+                        class="destination-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Yogyakarta</span>
+                      </button>
+
+                      <button type="button" onclick="selectDestination('Wilayah Jawa Barat')"
+                        class="destination-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Jawa Barat</span>
+                      </button>
+
+                      <button type="button" onclick="selectDestination('Wilayah DKI Jakarta')"
+                        class="destination-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah DKI Jakarta</span>
+                      </button>
+
+                      <button type="button" onclick="selectDestination('Wilayah Jawa Timur')"
+                        class="destination-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Jawa Timur</span>
+                      </button>
+
+                      <button type="button" onclick="selectDestination('Wilayah Lampung')"
+                        class="destination-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Lampung</span>
+                      </button>
+
+                      <button type="button" onclick="selectDestination('Wilayah Jawa Tengah')"
+                        class="destination-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Jawa Tengah</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <label class="block text-[11px] mb-1">Kategori Paket</label>
+
+                  <!-- Input kategori + tombol filter -->
+                  <button type="button" onclick="toggleCategoryFilter()" id="categoryButton"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] bg-white outline-none text-left flex items-center justify-between hover:border-orange-400">
+                    <span id="selectedCategory">Pilih kategori paket</span>
+                    <i class="fa-solid fa-chevron-down text-sm"></i>
+                  </button>
+                  <input type="hidden" id="categoryValue" required>
+
+                  <!-- Filter Kategori Paket -->
+                  <div id="categoryFilter"
+                    class="hidden absolute right-0 top-[72px] z-50 w-[310px] bg-white border border-gray-300 rounded-2xl shadow-lg p-4">
+                    <h3 class="text-lg font-bold text-gray-800 pb-2 border-b border-gray-300">Filter Kategori</h3>
+
+                    <div class="mt-3 space-y-1">
+                      <button type="button" onclick="selectCategory('Paket 1 Hari')"
+                        class="category-option w-full flex items-center gap-3 rounded-full px-3 py-2 text-sm text-orange-600 bg-orange-100 text-left">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 1 Hari</span>
+                      </button>
+
+                      <button type="button" onclick="selectCategory('Paket 2 Hari')"
+                        class="category-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 2 Hari</span>
+                      </button>
+
+                      <button type="button" onclick="selectCategory('Paket 3 Hari')"
+                        class="category-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 3 Hari</span>
+                      </button>
+
+                      <button type="button" onclick="selectCategory('Paket 4 Hari')"
+                        class="category-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 4 Hari</span>
+                      </button>
+
+                      <button type="button" onclick="selectCategory('Paket 5 Hari')"
+                        class="category-option w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 5 Hari</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div><label class="block text-[11px] mb-1">Durasi</label><input required placeholder="Tulis durasi perjalanan" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400"></div>
+                <div><label class="block text-[11px] mb-1">Makan</label><input placeholder="Tulis makan yang didapatkan" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400"></div>
+              </div>
+              <div class="mt-2"><label class="block text-[11px] mb-1">Deskripsi</label><textarea placeholder="Tulis deskripsi paket wisata" class="w-full h-16 border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none resize-none focus:border-orange-400"></textarea></div>
+            </div>
+
+            <div class="border border-gray-300 rounded-2xl p-4 mb-3">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                <h2 class="text-sm font-bold">3. Rencana Perjalanan</h2>
+                <button type="button" onclick="showItineraryPage()" class="border border-orange-400 text-orange-600 rounded-full px-5 py-2 text-[11px] font-medium">+ Tambah Rencana Perjalanan</button>
+              </div>
+              <div class="rounded-xl bg-orange-100/70 px-4 py-3 flex items-center gap-3">
+                <i class="fa-solid fa-circle-exclamation text-orange-500"></i>
+                <div><p class="text-[11px] font-medium">Belum Ada Rencana Perjalanan</p><p class="text-[10px] text-gray-600">Klik tombol <span class="text-orange-600">Tambah Rencana Perjalanan</span> untuk menambahkan rencana perjalanan.</p></div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between gap-4 pt-1">
+              <button type="button" onclick="showPackagePage()" class="border border-gray-300 rounded-full px-7 py-3 text-sm text-gray-700 self-start"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</button>
+              <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-3 text-sm font-semibold sm:min-w-[50%]">Simpan</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== HALAMAN EDIT PAKET WISATA ==================== -->
+  <main id="editPackagePage" class="max-w-6xl mx-auto px-4 pb-8 hidden">
+    <button onclick="showPackagePage()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 md:p-4 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- SIDEBAR ADMIN -->
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-5 min-h-[650px]">
+          <div class="flex flex-col items-center text-center pt-2">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+
+          <div class="mt-8 space-y-2">
+            <button onclick="showDashboardPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-house text-base w-5"></i> Dashboard
+            </button>
+            <button onclick="showPackagePage()" class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium">
+              <i class="fa-solid fa-suitcase text-base w-5"></i> Paket Wisata
+            </button>
+            <button onclick="showHistoryPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-clock-rotate-left text-base w-5"></i> Riwayat Pemesanan
+            </button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-gear text-base w-5"></i> Pengaturan
+            </button>
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i> Logout
+            </button>
+          </div>
+        </aside>
+
+        <!-- KONTEN EDIT -->
+        <section class="lg:col-span-9 bg-white rounded-2xl border border-gray-300 p-5">
+          <h1 class="text-xl font-bold text-gray-800 mb-7">Edit Paket Wisata - Jogja Trour 2 Hari</h1>
+
+          <form onsubmit="event.preventDefault(); alert('Paket wisata berhasil diubah!'); showPackagePage();">
+
+            <!-- 1. UBAH GAMBAR -->
+            <div class="mb-3">
+              <h2 class="text-sm font-bold mb-2">1. Ubah Gambar</h2>
+              <label class="border border-orange-400 rounded-2xl min-h-[84px] flex flex-col items-center justify-center cursor-pointer hover:bg-orange-50/40 transition">
+                <i class="fa-solid fa-cloud-arrow-up text-orange-500 text-2xl mb-1"></i>
+                <span class="text-xs text-gray-700">Seret &amp; letakkan gambar disini atau</span>
+                <span class="text-xs text-orange-500 mt-1">klik untuk memilih file</span>
+                <span class="text-[8px] text-gray-400 mt-1">Format: JPG, PNG, WEBP. Maksimal 2MB</span>
+                <input type="file" accept="image/png,image/jpeg,image/webp" class="hidden">
+              </label>
+            </div>
+
+            <!-- 2. UBAH INFORMASI -->
+            <div class="border border-gray-300 rounded-2xl p-4 mb-3">
+              <h2 class="text-sm font-bold mb-3">2. Ubah Informasi Paket</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                <div>
+                  <label class="block text-[11px] mb-1">Nama Paket Wisata</label>
+                  <input placeholder="Ubah nama paket wisata" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400">
+                </div>
+
+                <div>
+                  <label class="block text-[11px] mb-1">Harga Mulai (Rp)</label>
+                  <input placeholder="Ubah harga" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400">
+                </div>
+
+                <!-- DESTINASI -->
+                <div class="relative">
+                  <label class="block text-[11px] mb-1">Destinasi</label>
+                  <button type="button" onclick="toggleEditDestinationFilter()" id="editDestinationButton"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] bg-white outline-none text-left flex items-center justify-between hover:border-orange-400">
+                    <span id="editSelectedDestination">Ubah destinasi</span>
+                    <i class="fa-solid fa-chevron-down text-sm"></i>
+                  </button>
+                  <input type="hidden" id="editDestinationValue">
+
+                  <div id="editDestinationFilter"
+                    class="hidden absolute left-0 top-[72px] z-50 w-[310px] bg-white border border-gray-300 rounded-2xl shadow-lg p-4">
+                    <h3 class="text-lg font-bold text-gray-800 pb-2 border-b border-gray-300">Filter Destinasi</h3>
+                    <div class="mt-3 space-y-1">
+                      <button type="button" onclick="selectEditDestination('Semua Destinasi')" class="w-full flex items-center gap-3 rounded-full px-3 py-2 text-sm text-orange-600 bg-orange-100 text-left">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Semua Destinasi</span>
+                      </button>
+                      <button type="button" onclick="selectEditDestination('Wilayah Yogyakarta')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Yogyakarta</span>
+                      </button>
+                      <button type="button" onclick="selectEditDestination('Wilayah Jawa Barat')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Jawa Barat</span>
+                      </button>
+                      <button type="button" onclick="selectEditDestination('Wilayah DKI Jakarta')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah DKI Jakarta</span>
+                      </button>
+                      <button type="button" onclick="selectEditDestination('Wilayah Jawa Timur')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Jawa Timur</span>
+                      </button>
+                      <button type="button" onclick="selectEditDestination('Wilayah Lampung')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Lampung</span>
+                      </button>
+                      <button type="button" onclick="selectEditDestination('Wilayah Jawa Tengah')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Destinasi" class="w-7 h-7 object-contain">
+                        <span>Wilayah Jawa Tengah</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- KATEGORI -->
+                <div class="relative">
+                  <label class="block text-[11px] mb-1">Kategori Paket</label>
+                  <button type="button" onclick="toggleEditCategoryFilter()" id="editCategoryButton"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] bg-white outline-none text-left flex items-center justify-between hover:border-orange-400">
+                    <span id="editSelectedCategory">Ubah kategori paket</span>
+                    <i class="fa-solid fa-chevron-down text-sm"></i>
+                  </button>
+                  <input type="hidden" id="editCategoryValue">
+
+                  <div id="editCategoryFilter"
+                    class="hidden absolute right-0 top-[72px] z-50 w-[310px] bg-white border border-gray-300 rounded-2xl shadow-lg p-4">
+                    <h3 class="text-lg font-bold text-gray-800 pb-2 border-b border-gray-300">Filter Kategori</h3>
+                    <div class="mt-3 space-y-1">
+                      <button type="button" onclick="selectEditCategory('Paket 1 Hari')" class="w-full flex items-center gap-3 rounded-full px-3 py-2 text-sm text-orange-600 bg-orange-100 text-left">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 1 Hari</span>
+                      </button>
+                      <button type="button" onclick="selectEditCategory('Paket 2 Hari')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 2 Hari</span>
+                      </button>
+                      <button type="button" onclick="selectEditCategory('Paket 3 Hari')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 3 Hari</span>
+                      </button>
+                      <button type="button" onclick="selectEditCategory('Paket 4 Hari')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 4 Hari</span>
+                      </button>
+                      <button type="button" onclick="selectEditCategory('Paket 5 Hari')" class="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 text-left hover:bg-gray-100">
+                        <img src="img/icon kp.png" alt="Icon Kategori" class="w-7 h-7 object-contain">
+                        <span>Paket 5 Hari</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] mb-1">Durasi</label>
+                  <input placeholder="Ubah durasi perjalanan" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400">
+                </div>
+
+                <div>
+                  <label class="block text-[11px] mb-1">Makan</label>
+                  <input placeholder="Ubah makan yang didapatkan" class="w-full border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none focus:border-orange-400">
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <label class="block text-[11px] mb-1">Deskripsi</label>
+                <textarea placeholder="Ubah deskripsi paket wisata" class="w-full h-16 border border-gray-300 rounded-md px-3 py-2 text-[11px] outline-none resize-none focus:border-orange-400"></textarea>
+              </div>
+            </div>
+
+            <!-- 3. RENCANA PERJALANAN -->
+            <div class="border border-gray-300 rounded-2xl p-4 mb-3">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                <h2 class="text-sm font-bold">3. Rencana Perjalanan</h2>
+                <button type="button" onclick="showItineraryPage()" class="border border-orange-400 text-orange-600 rounded-full px-5 py-2 text-[11px] font-medium">Ubah Rencana Perjalanan</button>
+              </div>
+            </div>
+
+            <!-- TOMBOL -->
+            <div class="flex flex-col sm:flex-row justify-between gap-4 pt-1">
+              <button type="button" onclick="showPackagePage()" class="border border-gray-300 rounded-full px-7 py-3 text-sm text-gray-700 self-start">
+                <i class="fa-solid fa-arrow-left mr-2"></i>Kembali
+              </button>
+              <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-3 text-sm font-semibold sm:min-w-[50%]">Ubah Rencana Perjalanan</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ==================== HALAMAN TAMBAH RENCANA PERJALANAN ==================== -->
+  <main id="itineraryPage" class="max-w-6xl mx-auto px-4 pb-8 hidden">
+    <button onclick="showEditPackagePage()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 md:p-4 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- SIDEBAR ADMIN -->
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-5 min-h-[650px]">
+          <div class="flex flex-col items-center text-center pt-2">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+
+          <div class="mt-8 space-y-2">
+            <button onclick="showDashboardPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-house text-base w-5"></i> Dashboard
+            </button>
+            <button onclick="showPackagePage()" class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium">
+              <i class="fa-solid fa-suitcase text-base w-5"></i> Paket Wisata
+            </button>
+            <button onclick="showHistoryPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-clock-rotate-left text-base w-5"></i> Riwayat Pemesanan
+            </button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-gear text-base w-5"></i> Pengaturan
+            </button>
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i> Logout
+            </button>
+          </div>
+        </aside>
+
+        <!-- KONTEN RENCANA PERJALANAN -->
+        <section class="lg:col-span-9 bg-white rounded-2xl border border-gray-300 p-5">
+          <h1 class="text-xl font-bold text-gray-900 mb-7">Tambah Rencana Perjalanan - Nama Paket Wisata</h1>
+
+          <div class="border border-gray-300 rounded-2xl p-4 mb-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+              <h2 class="text-sm font-bold">Daftar Rencana Perjalanan</h2>
+              <button type="button" onclick="addItineraryDay()" class="border border-orange-400 text-orange-600 rounded-full px-5 py-2 text-[11px] font-medium hover:bg-orange-50">
+                + Tambah Hari
+              </button>
+            </div>
+
+            <div id="itineraryDays" class="space-y-5">
+              <div class="itinerary-day border border-gray-300 rounded-2xl p-4">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-sm font-bold"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-orange-500 text-white text-[9px] mr-2">1</span>Hari ke-1</h3>
+                  <button type="button" onclick="removeItineraryDay(this)" class="text-red-500 hover:text-red-600 text-lg" title="Hapus hari">
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+                </div>
+
+                <div class="border border-gray-300 rounded-lg overflow-hidden">
+                  <div class="grid grid-cols-[70px_1fr_1fr_32px] gap-2 px-2 py-2 text-[9px] text-gray-500 font-medium">
+                    <span>Jam</span><span>Destinasi / Kegiatan</span><span>Deskripsi</span><span>Aksi</span>
+                  </div>
+                  <div class="itinerary-activities px-2 pb-2 space-y-1">
+                    <div class="itinerary-row grid grid-cols-[70px_1fr_1fr_32px] gap-2 items-center">
+                      <input value="08:00" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+                      <input placeholder="Tulis destinasi / kegiatan" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+                      <input placeholder="Tulis deskripsi kegiatan" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+                      <button type="button" onclick="removeItineraryRow(this)" class="text-red-500 hover:text-red-600 text-lg"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" onclick="addItineraryRow(this)" class="mt-3 border border-orange-400 text-orange-600 rounded-full px-5 py-2 text-[11px] font-medium hover:bg-orange-50">
+                  + Tambah Destinasi
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row justify-between gap-4 pt-1">
+            <button type="button" onclick="showEditPackagePage()" class="border border-gray-300 rounded-full px-7 py-3 text-sm text-gray-700 self-start">
+              <i class="fa-solid fa-arrow-left mr-2"></i>Kembali
+            </button>
+            <button type="button" onclick="saveItinerary()" class="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-3 text-sm font-semibold sm:min-w-[50%]">
+              Simpan Rencana Perjalanan
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ==================== HALAMAN RIWAYAT PEMESANAN ==================== -->
+  <main id="historyPage" class="max-w-6xl mx-auto px-4 pb-8 hidden">
+    <button onclick="showDashboardPage()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 md:p-4 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- SIDEBAR PROFIL -->
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-5 min-h-[650px]">
+          <div class="flex flex-col items-center text-center pt-2">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+
+          <div class="mt-8 space-y-2">
+            <button onclick="showDashboardPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-house text-base w-5"></i> Dashboard
+            </button>
+            <button onclick="showPackagePage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-suitcase text-base w-5"></i> Paket Wisata
+            </button>
+            <button onclick="showHistoryPage()" class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium">
+              <i class="fa-solid fa-clock-rotate-left text-base w-5"></i> Riwayat Pemesanan
+            </button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-gear text-base w-5"></i> Pengaturan
+            </button>
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition">
+              <i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i> Logout
+            </button>
+          </div>
+        </aside>
+
+        <!-- KONTEN RIWAYAT PEMESANAN -->
+        <section class="lg:col-span-9 bg-white rounded-2xl border border-gray-300 p-5">
+          <h1 class="text-xl font-bold text-gray-900 mb-7">Riwayat Pemesanan</h1>
+
+          <div class="flex items-center gap-3 border border-gray-300 bg-gray-100 rounded-full px-4 py-2 mb-5">
+            <i class="fa-solid fa-magnifying-glass text-gray-500"></i>
+            <input id="historySearch" oninput="filterHistory()" type="text" placeholder="Search" class="w-full bg-transparent outline-none text-sm text-gray-700">
+          </div>
+
+          <div class="border border-gray-300 rounded-2xl p-3">
+            <h2 class="text-sm font-bold mb-3">Daftar Pemesanan</h2>
+
+            <div class="border border-gray-300 rounded-2xl overflow-hidden">
+              <div class="grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 bg-orange-50 px-4 py-3 text-[10px] font-semibold text-gray-800">
+                <span>Pelanggan</span>
+                <span>Paket Wisata</span>
+                <span>Tanggal</span>
+                <span>Jumlah Peserta</span>
+                <span>Total Pembayaran</span>
+                <span>Status</span>
+                <span>Aksi</span>
+              </div>
+
+              <div id="historyList" class="divide-y divide-gray-200">
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Alexa Lubeille R Jogja Tour 2 Hari Yogyakarta 01 Agustus 2026 05 Agustus 2026 6 Orang Rp. 13.200.000 Dipending">
+                  <div><p>Alexa Lubeille R.</p><p class="text-gray-500">0987-3572-3833</p></div>
+                  <div><p>Jogja Tour 2 Hari</p><p class="text-gray-500">Yogyakarta</p></div>
+                  <div><p class="text-gray-500">01 Agustus 2026</p><p class="text-gray-500">05 Agustus 2026</p></div>
+                  <div class="text-gray-500">6 Orang</div>
+                  <div class="text-gray-500">Rp. 13.200.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-blue-100 text-blue-700 rounded-full px-2 py-1">Dipending</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-blue-500 text-blue-600 rounded-full px-2 py-1 hover:bg-blue-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Nadia Putri Bandung Tour 4 Hari Bandung 06 Agustus 2026 09 Agustus 2026 8 Orang Rp. 14.400.000 Selesai">
+                  <div><p>Nadia Putri</p><p class="text-gray-500">0859-355-4829</p></div>
+                  <div><p>Bandung Tour 4 Hari</p><p class="text-gray-500">Bandung</p></div>
+                  <div><p class="text-gray-500">06 Agustus 2026</p><p class="text-gray-500">09 Agustus 2026</p></div>
+                  <div class="text-gray-500">8 Orang</div>
+                  <div class="text-gray-500">Rp. 14.400.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showCompletedDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Raka Pratama Bali Tour 5 Hari Bali 27 Agustus 2026 29 Agustus 2026 4 Orang Rp. 11.000.000 Selesai">
+                  <div><p>Raka Pratama</p><p class="text-gray-500">0824-7872-3844</p></div>
+                  <div><p>Bali Tour 5 Hari</p><p class="text-gray-500">Bali</p></div>
+                  <div><p class="text-gray-500">27 Agustus 2026</p><p class="text-gray-500">29 Agustus 2026</p></div>
+                  <div class="text-gray-500">4 Orang</div>
+                  <div class="text-gray-500">Rp. 11.000.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Alya Ramadhani Lampung Tour 3 Hari Lampung 18 Juli 2026 25 Juli 2026 7 Orang Rp. 6.825.000 Selesai">
+                  <div><p>Alya Ramadhani</p><p class="text-gray-500">0928-7533-2088</p></div>
+                  <div><p>Lampung Tour 3 Hari</p><p class="text-gray-500">Lampung</p></div>
+                  <div><p class="text-gray-500">18 Juli 2026</p><p class="text-gray-500">25 Juli 2026</p></div>
+                  <div class="text-gray-500">7 Orang</div>
+                  <div class="text-gray-500">Rp. 6.825.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Fajar Maulana Bromo Tour 1 Hari Jawa Timur 19 Juli 2026 27 Juli 2026 10 Orang Rp. 4.990.000 Selesai">
+                  <div><p>Fajar Maulana</p><p class="text-gray-500">0925-4489-3877</p></div>
+                  <div><p>Bromo Tour 1 Hari</p><p class="text-gray-500">Jawa Timur</p></div>
+                  <div><p class="text-gray-500">19 Juli 2026</p><p class="text-gray-500">27 Juli 2026</p></div>
+                  <div class="text-gray-500">10 Orang</div>
+                  <div class="text-gray-500">Rp. 4.990.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Bagas Aditya Jogja Tour 2 Hari Yogyakarta 20 Juni 2026 23 Juni 2026 10 Orang Rp. 22.000.000 Selesai">
+                  <div><p>Bagas Aditya</p><p class="text-gray-500">0811-1425-3809</p></div>
+                  <div><p>Jogja Tour 2 Hari</p><p class="text-gray-500">Yogyakarta</p></div>
+                  <div><p class="text-gray-500">20 Juni 2026</p><p class="text-gray-500">23 Juni 2026</p></div>
+                  <div class="text-gray-500">10 Orang</div>
+                  <div class="text-gray-500">Rp. 22.000.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Salsa Maharani Malioboro Tour 1 Hari Yogyakarta 01 Mei 2026 05 Mei 2026 12 Orang Rp. 2.988.000 Selesai">
+                  <div><p>Salsa Maharani</p><p class="text-gray-500">0873-8927-3857</p></div>
+                  <div><p>Malioboro Tour 1 Hari</p><p class="text-gray-500">Yogyakarta</p></div>
+                  <div><p class="text-gray-500">01 Mei 2026</p><p class="text-gray-500">05 Mei 2026</p></div>
+                  <div class="text-gray-500">12 Orang</div>
+                  <div class="text-gray-500">Rp. 2.988.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Rizky Akbar Tangkuban P. Tour 1 Hari Jawa Barat 27 April 2026 30 April 2026 15 Orang Rp. 3.000.000 Selesai">
+                  <div><p>Rizky Akbar</p><p class="text-gray-500">0986-3372-3879</p></div>
+                  <div><p>Tangkuban P. Tour 1 Hari</p><p class="text-gray-500">Jawa Barat</p></div>
+                  <div><p class="text-gray-500">27 April 2026</p><p class="text-gray-500">30 April 2026</p></div>
+                  <div class="text-gray-500">15 Orang</div>
+                  <div class="text-gray-500">Rp. 3.000.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Citra Lestari Pantai P. Tour 1 Hari Bali 05 Maret 2026 07 Maret 2026 9 Orang Rp. 1.575.000 Selesai">
+                  <div><p>Citra Lestari</p><p class="text-gray-500">0927-8872-3834</p></div>
+                  <div><p>Pantai P. Tour 1 Hari</p><p class="text-gray-500">Bali</p></div>
+                  <div><p class="text-gray-500">05 Maret 2026</p><p class="text-gray-500">07 Maret 2026</p></div>
+                  <div class="text-gray-500">9 Orang</div>
+                  <div class="text-gray-500">Rp. 1.575.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Nabila Azzahra Bandung Tour 4 Hari Bandung 18 Maret 2026 20 Maret 2026 5 Orang Rp. 9.000.000 Selesai">
+                  <div><p>Nabila Azzahra</p><p class="text-gray-500">0977-3582-3844</p></div>
+                  <div><p>Bandung Tour 4 Hari</p><p class="text-gray-500">Bandung</p></div>
+                  <div><p class="text-gray-500">18 Maret 2026</p><p class="text-gray-500">20 Maret 2026</p></div>
+                  <div class="text-gray-500">5 Orang</div>
+                  <div class="text-gray-500">Rp. 9.000.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Kevin Wijaya Bali Tour 5 Hari Bali 08 Februari 2026 10 Februari 2026 6 Orang Rp. 16.500.000 Selesai">
+                  <div><p>Kevin Wijaya</p><p class="text-gray-500">0827-3584-3923</p></div>
+                  <div><p>Bali Tour 5 Hari</p><p class="text-gray-500">Bali</p></div>
+                  <div><p class="text-gray-500">08 Februari 2026</p><p class="text-gray-500">10 Februari 2026</p></div>
+                  <div class="text-gray-500">6 Orang</div>
+                  <div class="text-gray-500">Rp. 16.500.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+
+                <div class="history-row grid grid-cols-[1.15fr_1.25fr_1.15fr_.8fr_1.35fr_1fr_1.15fr] gap-2 items-center px-4 py-2 text-[9px] text-gray-700" data-search="Intan Permata Lampung Tour 3 Hari Lampung 09 Januari 2026 12 Januari 2026 10 Orang Rp. 9.750.000 Selesai">
+                  <div><p>Intan Permata</p><p class="text-gray-500">0917-3482-2988</p></div>
+                  <div><p>Lampung Tour 3 Hari</p><p class="text-gray-500">Lampung</p></div>
+                  <div><p class="text-gray-500">09 Januari 2026</p><p class="text-gray-500">12 Januari 2026</p></div>
+                  <div class="text-gray-500">10 Orang</div>
+                  <div class="text-gray-500">Rp. 9.750.000</div>
+                  <div><span class="inline-block min-w-[110px] text-center bg-green-100 text-green-700 rounded-full px-2 py-1">Selesai</span></div>
+                  <div><button type="button" onclick="showDetailBookingPage()" class="w-full border border-green-500 text-green-600 rounded-full px-2 py-1 hover:bg-green-50 transition">Lihat Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+
+  <!-- ==================== HALAMAN DETAIL PEMESANAN ==================== -->
+  <main id="detailBookingPage" class="max-w-6xl mx-auto px-4 pb-8 hidden">
+    <button onclick="showHistoryPage()" class="text-black hover:text-gray-700 text-xl mb-2 ml-1 transition" aria-label="Kembali ke riwayat pemesanan">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-3 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
+        <aside class="lg:col-span-3 bg-white rounded-2xl border border-gray-300 p-4 min-h-[650px]">
+          <div class="flex flex-col items-center text-center pt-1">
+            <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center mb-2">
+              <i class="fa-regular fa-user text-gray-500 text-2xl"></i>
+            </div>
+            <h2 class="font-bold text-sm text-gray-900">Ika Safitri Oktavia</h2>
+            <p class="text-[11px] text-gray-700 mt-1">ikasafitrioktavia@gmail.com</p>
+          </div>
+          <div class="mt-7 space-y-1.5">
+            <button onclick="showDashboardPage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-house text-base w-5"></i> Dashboard</button>
+            <button onclick="showPackagePage()" class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-suitcase text-base w-5"></i> Paket Wisata</button>
+            <button onclick="showHistoryPage()" class="w-full flex items-center gap-3 bg-orange-100 text-orange-600 rounded-xl px-4 py-3 text-sm font-medium"><i class="fa-solid fa-clock-rotate-left text-base w-5"></i> Riwayat Pemesanan</button>
+            <button class="w-full flex items-center gap-3 hover:bg-gray-100 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-gear text-base w-5"></i> Pengaturan</button>
+            <button onclick="navigateTo('login')" class="w-full flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-xl px-4 py-3 text-sm font-medium transition"><i class="fa-solid fa-arrow-right-from-bracket text-base w-5"></i> Logout</button>
+          </div>
+        </aside>
+
+        <section class="lg:col-span-9 bg-white rounded-2xl border border-gray-300 p-4">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4 px-6">
+            <div>
+              <h1 id="detailTitle" class="text-xl font-bold text-gray-900">Detail Pemesanan</h1>
+              <p id="detailBookedDate" class="text-sm text-gray-900 mt-1">Dipesan pada 01 Agustus 2026</p>
+              <span id="bookingStatus" class="inline-block mt-3 min-w-[172px] text-center bg-blue-100 text-blue-700 rounded-full px-4 py-1 text-xs">Dipending</span>
+            </div>
+            <button id="approveButton" type="button" onclick="approveBooking()" class="bg-blue-700 hover:bg-blue-800 text-white rounded-full px-8 py-3 text-sm font-medium min-w-[220px] transition">
+              <i class="fa-solid fa-check mr-2"></i> Disetujui
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 px-6">
+            <div class="space-y-3">
+              <div class="border border-gray-300 rounded-2xl p-4">
+                <h2 class="text-sm font-bold mb-3">Informasi Paket</h2>
+                <div class="flex gap-3 items-center">
+                  <img id="detailPackageImage" src="img/jogja.png" alt="Jogja Tour" class="w-[150px] h-[90px] object-cover rounded-xl border border-gray-200 shrink-0">
+                  <div class="text-[11px] text-gray-600 space-y-2">
+                    <p id="detailPackageName" class="font-bold text-gray-900 text-sm">Jogja Tour 2 Hari</p>
+                    <p><i class="fa-regular fa-clock w-5 text-gray-500"></i><span id="detailDuration">Durasi 1 Hari</span></p>
+                    <p><i class="fa-solid fa-building w-5 text-gray-500"></i><span id="detailHotel">No Hotel</span></p>
+                    <p><i class="fa-solid fa-utensils w-5 text-gray-500"></i><span id="detailMeal">Makan 1x</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="border border-gray-300 rounded-2xl p-4">
+                <h2 class="text-sm font-bold mb-3">Informasi Pelanggan</h2>
+                <div class="grid grid-cols-[140px_1fr] gap-y-1 text-[11px] text-gray-600">
+                  <span>Nama Lengkap</span><span id="detailCustomerName">: Alexa Lubeille R.</span>
+                  <span>Email</span><span id="detailCustomerEmail">: alexaxaxa@gmail.com</span>
+                  <span>No WhatsApp</span><span id="detailCustomerWhatsapp">: 0897-3572-3833</span>
+                  <span>Alamat</span><span id="detailCustomerAddress">: Yogyakarta</span>
+                  <span>Catatan</span><span id="detailCustomerNote">: Tidak ada catatan</span>
+                </div>
+              </div>
+              <div class="border border-gray-300 rounded-2xl p-4">
+                <h2 class="text-sm font-bold mb-3">Informasi Pemesanan</h2>
+                <div class="grid grid-cols-[140px_1fr] gap-y-1 text-[11px] text-gray-600">
+                  <span>Paket Wisata</span><span id="detailBookingPackage">: Jogja Tour 2 Hari</span>
+                  <span>Tanggal Pesan</span><span id="detailBookingDate">: 01 Agustus 2026</span>
+                  <span>Tanggal Keberangkatan</span><span id="detailDepartureDate">: 05 Agustus 2026</span>
+                  <span>Daerah Keberangkatan</span><span id="detailDepartureArea">: Lampung</span>
+                  <span>Harga Per-Orang</span><span id="detailPrice">: Rp 2.200.000</span>
+                  <span>Jumlah Peserta</span><span id="detailParticipants">: 6 Orang</span>
+                </div>
+              </div>
+              <div class="border border-gray-300 rounded-2xl p-4">
+                <h2 class="text-sm font-bold mb-3">Informasi Pembayaran</h2>
+                <div class="grid grid-cols-[140px_1fr] gap-y-1 text-[11px] text-gray-600">
+                  <span>Metode Pembayaran</span><span id="detailPaymentMethod">: Midtrans (WhatsApp)</span>
+                  <span>Status Pembayaran</span><span id="detailPaymentStatus">: Berhasil</span>
+                  <span>Tanggal Pembayaran</span><span id="detailPaymentDate">: 01 Agustus 2026</span>
+                  <span>Total Pembayaran</span><span id="detailTotalPayment">: Rp 13.200.000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-3 min-w-0">
+              <div class="border border-gray-300 rounded-2xl p-3 min-h-[545px]">
+                <h2 class="text-sm font-bold mb-7">Bukti Pembayaran</h2>
+                <div class="mx-auto w-[238px] bg-[#168fe0] p-3 pb-8 text-white text-center shadow-sm">
+                  <p class="text-[9px] font-semibold mb-5">Detail Transaksi</p>
+                  <div class="bg-white rounded-sm text-gray-700 px-3 py-3 text-left">
+                    <div class="text-center border-b border-gray-200 pb-3">
+                      <div class="mx-auto w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center mb-2"><i class="fa-solid fa-check text-xs"></i></div>
+                      <p class="text-orange-500 font-bold text-sm">Rp50.000</p>
+                      <p class="text-[7px]">Pembayaran Berhasil</p>
+                      <p class="text-[7px]">16 Agu 2023 • 11:41</p>
+                    </div>
+                    <div class="py-3 border-b border-gray-200 text-[7px] space-y-2">
+                      <p class="font-semibold">12410379881212</p><span class="inline-block bg-gray-100 px-2 py-1">PEMBAYARAN</span>
+                    </div>
+                    <div class="py-3 border-b border-gray-200 text-[7px] space-y-2">
+                      <p class="font-semibold">Detail Transaksi</p>
+                      <p>ID Transaksi<br>2023081611121280010016686445575901</p>
+                      <p>ID Order Merchant<br>12012022023831160011739406522757</p>
+                    </div>
+                    <div class="py-3 text-[7px]">
+                      <p class="mb-2">Metode Pembayaran</p>
+                      <div class="bg-blue-50 rounded px-2 py-2 flex justify-between"><span><i class="fa-solid fa-circle-minus text-blue-500 mr-1"></i> Saldo DANA</span><i class="fa-solid fa-circle-check text-blue-500"></i></div>
+                    </div>
+                  </div>
+                  <p class="text-[7px] mt-5">Powered by <b>GO Travel</b></p>
+                </div>
+              </div>
+              <div id="tripStatusBox" class="bg-blue-100/80 rounded-xl px-4 py-3 flex items-center gap-3">
+                <i id="tripStatusIcon" class="fa-regular fa-circle-question text-blue-700 text-lg"></i>
+                <div><p id="tripStatusTitle" class="text-xs font-medium text-gray-800">Menunggu perjalanan</p><p id="tripStatusText" class="text-[10px] text-gray-600">Menunggu perjalanan selesai</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function showCompletedDetailBookingPage() {
+      showDetailBookingPage();
+
+      // KHUSUS PEMESANAN SELESAI:
+      // tombol Disetujui tidak ditampilkan
+      const approve = document.getElementById('approveButton');
+      if (approve) {
+        approve.classList.add('hidden');
+      }
+
+      // Status harus Selesai, bukan Dikonfirmasi
+      const status = document.getElementById('bookingStatus');
+      if (status) {
+        status.textContent = 'Selesai';
+        status.className =
+          'inline-block mt-3 min-w-[172px] text-center ' +
+          'bg-green-100 text-green-700 rounded-full px-4 py-1 text-xs';
+      }
+
+      document.getElementById('detailBookedDate').textContent = 'Dipesan pada 06 Agustus 2026';
+
+      document.getElementById('detailPackageImage').src = 'img/bandung.png';
+      document.getElementById('detailPackageImage').alt = 'Bandung Tour';
+      document.getElementById('detailPackageName').textContent = 'Bandung Tour 4 Hari';
+      document.getElementById('detailDuration').textContent = 'Durasi 4 Hari 3 Malam';
+      document.getElementById('detailHotel').textContent = 'No Hotel';
+      document.getElementById('detailMeal').textContent = 'Makan 1x';
+
+      document.getElementById('detailCustomerName').textContent = ': Nadia Putri';
+      document.getElementById('detailCustomerEmail').textContent = ': Nadia@gmail.com';
+      document.getElementById('detailCustomerWhatsapp').textContent = ': 0859-3555-4829';
+      document.getElementById('detailCustomerAddress').textContent = ': Bandung';
+      document.getElementById('detailCustomerNote').textContent = ': Tidak ada catatan';
+
+      document.getElementById('detailBookingPackage').textContent = ': Bandung Tour 4 Hari';
+      document.getElementById('detailBookingDate').textContent = ': 06 Agustus 2026';
+      document.getElementById('detailDepartureDate').textContent = ': 09 Agustus 2026';
+      document.getElementById('detailDepartureArea').textContent = ': Jogja';
+      document.getElementById('detailPrice').textContent = ': Rp 1.800.000';
+      document.getElementById('detailParticipants').textContent = ': 8 Orang';
+
+      document.getElementById('detailPaymentMethod').textContent = ': Midtrans (WhatsApp)';
+      document.getElementById('detailPaymentStatus').textContent = ': Berhasil';
+      document.getElementById('detailPaymentDate').textContent = ': 06 Agustus 2026';
+      document.getElementById('detailTotalPayment').textContent = ': Rp 14.400.000';
+
+      const box = document.getElementById('tripStatusBox');
+      box.className = 'bg-green-100/80 rounded-xl px-4 py-3 flex items-center gap-3';
+      document.getElementById('tripStatusIcon').className = 'fa-regular fa-circle-check text-green-700 text-lg';
+      document.getElementById('tripStatusTitle').textContent = 'Perjalanan selesai';
+      document.getElementById('tripStatusText').textContent = 'Perjalanan telah selesai';
+
+      // Pengaman: halaman selesai tidak boleh memiliki tombol Disetujui
+      const completedApproveButton = document.getElementById('approveButton');
+      if (completedApproveButton) {
+        completedApproveButton.classList.add('hidden');
+      }
+    }
+
+    function approveBooking() {
+      const status = document.getElementById('bookingStatus');
+      if (status) {
+        status.textContent = 'Dikonfirmasi';
+        status.className = 'inline-block mt-3 min-w-[172px] text-center bg-green-100 text-green-700 rounded-full px-4 py-1 text-xs';
+      }
+      alert('Pemesanan berhasil disetujui!');
+    }
+
+    function navigateTo(page) {
+      if (page === 'home') {
+        window.location.href = 'index.html';
+      } else if (page === 'login') {
+        window.location.href = 'login.html';
+      } else if (page === 'paket') {
+        showPackagePage();
+      } else if (page === 'about') {
+        window.location.href = 'index.html#about';
+      }
+    }
+
+
+    function showPackagePage() {
+      document.getElementById('detailBookingPage').classList.add('hidden');
+      document.getElementById('historyPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function showAddPackagePage() {
+      document.getElementById('detailBookingPage').classList.add('hidden');
+      document.getElementById('historyPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function showDashboardPage() {
+      document.getElementById('detailBookingPage').classList.add('hidden');
+      document.getElementById('historyPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function toggleDestinationFilter() {
+      document.getElementById('destinationFilter').classList.toggle('hidden');
+      document.getElementById('categoryFilter').classList.add('hidden');
+    }
+
+    function selectDestination(destination) {
+      document.getElementById('selectedDestination').textContent =
+        destination || 'Pilih destinasi';
+      document.getElementById('destinationValue').value = destination;
+      document.getElementById('destinationFilter').classList.add('hidden');
+    }
+
+    function toggleCategoryFilter() {
+      document.getElementById('categoryFilter').classList.toggle('hidden');
+      document.getElementById('destinationFilter').classList.add('hidden');
+    }
+
+    function selectCategory(category) {
+      document.getElementById('selectedCategory').textContent = category;
+      document.getElementById('categoryValue').value = category;
+      document.getElementById('categoryFilter').classList.add('hidden');
+    }
+
+
+    function showHistoryPage() {
+      document.getElementById('detailBookingPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.add('hidden');
+      document.getElementById('historyPage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function filterHistory() {
+      const keyword = document.getElementById('historySearch').value.toLowerCase().trim();
+      document.querySelectorAll('.history-row').forEach(row => {
+        row.classList.toggle('hidden', !row.dataset.search.toLowerCase().includes(keyword));
+      });
+    }
+
+    function showEditPackagePage() {
+      document.getElementById('detailBookingPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.add('hidden');
+      document.getElementById('historyPage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+
+    function showDetailBookingPage() {
+      const approve = document.getElementById('approveButton');
+      if (approve) approve.classList.remove('hidden');
+
+      // Kembalikan tampilan ke data pemesanan biasa/pending
+      document.getElementById('detailBookedDate').textContent = 'Dipesan pada 01 Agustus 2026';
+      const status = document.getElementById('bookingStatus');
+      status.textContent = 'Dipending';
+      status.className = 'inline-block mt-3 min-w-[172px] text-center bg-blue-100 text-blue-700 rounded-full px-4 py-1 text-xs';
+
+      document.getElementById('detailPackageImage').src = 'img/jogja.png';
+      document.getElementById('detailPackageImage').alt = 'Jogja Tour';
+      document.getElementById('detailPackageName').textContent = 'Jogja Tour 2 Hari';
+      document.getElementById('detailDuration').textContent = 'Durasi 1 Hari';
+      document.getElementById('detailHotel').textContent = 'No Hotel';
+      document.getElementById('detailMeal').textContent = 'Makan 1x';
+
+      document.getElementById('detailCustomerName').textContent = ': Alexa Lubeille R.';
+      document.getElementById('detailCustomerEmail').textContent = ': alexaxaxa@gmail.com';
+      document.getElementById('detailCustomerWhatsapp').textContent = ': 0897-3572-3833';
+      document.getElementById('detailCustomerAddress').textContent = ': Yogyakarta';
+      document.getElementById('detailCustomerNote').textContent = ': Tidak ada catatan';
+
+      document.getElementById('detailBookingPackage').textContent = ': Jogja Tour 2 Hari';
+      document.getElementById('detailBookingDate').textContent = ': 01 Agustus 2026';
+      document.getElementById('detailDepartureDate').textContent = ': 05 Agustus 2026';
+      document.getElementById('detailDepartureArea').textContent = ': Lampung';
+      document.getElementById('detailPrice').textContent = ': Rp 2.200.000';
+      document.getElementById('detailParticipants').textContent = ': 6 Orang';
+
+      document.getElementById('detailPaymentMethod').textContent = ': Midtrans (WhatsApp)';
+      document.getElementById('detailPaymentStatus').textContent = ': Berhasil';
+      document.getElementById('detailPaymentDate').textContent = ': 01 Agustus 2026';
+      document.getElementById('detailTotalPayment').textContent = ': Rp 13.200.000';
+
+      const box = document.getElementById('tripStatusBox');
+      box.className = 'bg-blue-100/80 rounded-xl px-4 py-3 flex items-center gap-3';
+      document.getElementById('tripStatusIcon').className = 'fa-regular fa-circle-question text-blue-700 text-lg';
+      document.getElementById('tripStatusTitle').textContent = 'Menunggu perjalanan';
+      document.getElementById('tripStatusText').textContent = 'Menunggu perjalanan selesai';
+
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.add('hidden');
+      document.getElementById('historyPage').classList.add('hidden');
+      document.getElementById('detailBookingPage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function showItineraryPage() {
+      document.getElementById('detailBookingPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('packagePage').classList.add('hidden');
+      document.getElementById('addPackagePage').classList.add('hidden');
+      document.getElementById('editPackagePage').classList.add('hidden');
+      document.getElementById('historyPage').classList.add('hidden');
+      document.getElementById('itineraryPage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function addItineraryDay() {
+      const container = document.getElementById('itineraryDays');
+      const dayNumber = container.querySelectorAll('.itinerary-day').length + 1;
+      const day = document.createElement('div');
+      day.className = 'itinerary-day border border-gray-300 rounded-2xl p-4';
+      day.innerHTML = `
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-sm font-bold"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-orange-500 text-white text-[9px] mr-2">${dayNumber}</span>Hari ke-${dayNumber}</h3>
+          <button type="button" onclick="removeItineraryDay(this)" class="text-red-500 hover:text-red-600 text-lg" title="Hapus hari"><i class="fa-regular fa-trash-can"></i></button>
+        </div>
+        <div class="border border-gray-300 rounded-lg overflow-hidden">
+          <div class="grid grid-cols-[70px_1fr_1fr_32px] gap-2 px-2 py-2 text-[9px] text-gray-500 font-medium"><span>Jam</span><span>Destinasi / Kegiatan</span><span>Deskripsi</span><span>Aksi</span></div>
+          <div class="itinerary-activities px-2 pb-2 space-y-1">
+            <div class="itinerary-row grid grid-cols-[70px_1fr_1fr_32px] gap-2 items-center">
+              <input placeholder="08:00" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+              <input placeholder="Tulis destinasi / kegiatan" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+              <input placeholder="Tulis deskripsi kegiatan" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+              <button type="button" onclick="removeItineraryRow(this)" class="text-red-500 hover:text-red-600 text-lg"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="addItineraryRow(this)" class="mt-3 border border-orange-400 text-orange-600 rounded-full px-5 py-2 text-[11px] font-medium hover:bg-orange-50">+ Tambah Destinasi</button>`;
+      container.appendChild(day);
+      renumberItineraryDays();
+    }
+
+    function removeItineraryDay(button) {
+      const days = document.querySelectorAll('#itineraryDays .itinerary-day');
+      if (days.length <= 1) return;
+      button.closest('.itinerary-day').remove();
+      renumberItineraryDays();
+    }
+
+    function renumberItineraryDays() {
+      document.querySelectorAll('#itineraryDays .itinerary-day').forEach((day, index) => {
+        const badge = day.querySelector('h3 span');
+        if (badge) badge.textContent = index + 1;
+        const title = day.querySelector('h3');
+        if (title) title.lastChild.textContent = 'Hari ke-' + (index + 1);
+      });
+    }
+
+    function addItineraryRow(button) {
+      const activities = button.previousElementSibling.querySelector('.itinerary-activities');
+      const row = document.createElement('div');
+      row.className = 'itinerary-row grid grid-cols-[70px_1fr_1fr_32px] gap-2 items-center';
+      row.innerHTML = `
+        <input placeholder="08:00" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+        <input placeholder="Tulis destinasi / kegiatan" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+        <input placeholder="Tulis deskripsi kegiatan" class="w-full border border-gray-300 rounded-md px-2 py-2 text-[10px] outline-none focus:border-orange-400">
+        <button type="button" onclick="removeItineraryRow(this)" class="text-red-500 hover:text-red-600 text-lg"><i class="fa-regular fa-trash-can"></i></button>`;
+      activities.appendChild(row);
+    }
+
+    function removeItineraryRow(button) {
+      const activities = button.closest('.itinerary-activities');
+      if (activities && activities.querySelectorAll('.itinerary-row').length > 1) {
+        button.closest('.itinerary-row').remove();
+      }
+    }
+
+    function saveItinerary() {
+      alert('Rencana perjalanan berhasil disimpan!');
+      showEditPackagePage();
+    }
+
+    function toggleEditDestinationFilter() {
+      document.getElementById('editDestinationFilter').classList.toggle('hidden');
+      document.getElementById('editCategoryFilter').classList.add('hidden');
+    }
+
+    function selectEditDestination(destination) {
+      document.getElementById('editSelectedDestination').textContent = destination;
+      document.getElementById('editDestinationValue').value = destination;
+      document.getElementById('editDestinationFilter').classList.add('hidden');
+    }
+
+    function toggleEditCategoryFilter() {
+      document.getElementById('editCategoryFilter').classList.toggle('hidden');
+      document.getElementById('editDestinationFilter').classList.add('hidden');
+    }
+
+    function selectEditCategory(category) {
+      document.getElementById('editSelectedCategory').textContent = category;
+      document.getElementById('editCategoryValue').value = category;
+      document.getElementById('editCategoryFilter').classList.add('hidden');
+    }
+
+    document.addEventListener('click', function(event) {
+      const destinationFilter = document.getElementById('destinationFilter');
+      const destinationButton = document.getElementById('destinationButton');
+      const categoryFilter = document.getElementById('categoryFilter');
+      const categoryButton = document.getElementById('categoryButton');
+      const editDestinationFilter = document.getElementById('editDestinationFilter');
+      const editDestinationButton = document.getElementById('editDestinationButton');
+      const editCategoryFilter = document.getElementById('editCategoryFilter');
+      const editCategoryButton = document.getElementById('editCategoryButton');
+
+      if (destinationFilter && destinationButton &&
+          !destinationFilter.contains(event.target) && !destinationButton.contains(event.target)) {
+        destinationFilter.classList.add('hidden');
+      }
+
+      if (categoryFilter && categoryButton &&
+          !categoryFilter.contains(event.target) && !categoryButton.contains(event.target)) {
+        categoryFilter.classList.add('hidden');
+      }
+
+      if (editDestinationFilter && editDestinationButton &&
+          !editDestinationFilter.contains(event.target) && !editDestinationButton.contains(event.target)) {
+        editDestinationFilter.classList.add('hidden');
+      }
+
+      if (editCategoryFilter && editCategoryButton &&
+          !editCategoryFilter.contains(event.target) && !editCategoryButton.contains(event.target)) {
+        editCategoryFilter.classList.add('hidden');
+      }
+    });
+
+    function filterPackages() {
+      const keyword = document.getElementById('packageSearch').value.toLowerCase().trim();
+      document.querySelectorAll('.package-item').forEach(item => {
+        item.classList.toggle('hidden', !item.dataset.name.toLowerCase().includes(keyword));
+      });
+    }
+
+    function goToContact() {
+      window.location.href = 'index.html#contact';
+    }
+  </script>
+
+</body>
+</html>
